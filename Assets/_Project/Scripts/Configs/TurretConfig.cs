@@ -1,0 +1,10 @@
+using UnityEngine;
+
+namespace _Project.Scripts.Configs
+{
+    [CreateAssetMenu(fileName = "TurretConfig", menuName = "Configs/TurretConfig")]
+    public class TurretConfig : ScriptableObject
+    {
+        [field: SerializeField] public float TurretSpeed { get; private set; }
+    }
+}
