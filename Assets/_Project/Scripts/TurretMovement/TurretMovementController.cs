@@ -5,6 +5,8 @@ namespace _Project.Scripts.TurretMovement
 {
     public class TurretMovementController : MonoBehaviour
     {
+        [SerializeField] private GameObject _turretGun;
+        
         private IInputable _inputManager;
 
         private float _xInput;
@@ -27,7 +29,7 @@ namespace _Project.Scripts.TurretMovement
         private void FixedUpdate()
         {
             transform.Rotate(0, -_xInput * _rotationSpeed * Time.deltaTime, 0);
-            transform.Rotate(_yInput * _rotationSpeed * Time.deltaTime, 0, 0);
+            _turretGun.transform.Rotate(_yInput * _rotationSpeed * Time.deltaTime, 0, 0);
         }
     }
 }
