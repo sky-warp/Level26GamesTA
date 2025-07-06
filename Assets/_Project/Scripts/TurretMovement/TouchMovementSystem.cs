@@ -13,14 +13,14 @@ namespace _Project.Scripts.TurretMovement
                 var touch = Input.GetTouch(0);
                 yTouch = touch.deltaPosition.y;
             }
-            
+
             return yTouch;
         }
 
         public float GetAxisHorizontal()
         {
             float xTouch = 0;
-                
+
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);

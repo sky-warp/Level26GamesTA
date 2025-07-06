@@ -1,11 +1,13 @@
-using _Project.Scripts.Turret;
 using _Project.Scripts.Turret.Model;
+using _Project.Scripts.TurretMovement;
 using UnityEngine;
 
-namespace _Project.Scripts.TurretMovement
+namespace _Project.Scripts.Turret.Controller
 {
     public class TurretMovementController : MonoBehaviour
     {
+        public bool IsTouched { get; private set; }
+
         private GameObject _turretGun;
 
         private IInputable _inputManager;
@@ -34,6 +36,8 @@ namespace _Project.Scripts.TurretMovement
         {
             _xInput = _inputManager.GetAxisHorizontal();
             _yInput = _inputManager.GetAxisVertical();
+
+            IsTouched = Mathf.Abs(_xInput) > 0 || Mathf.Abs(_yInput) > 0 || Input.touchCount > 0;
 
             _currentGunRotation = -_yInput;
         }

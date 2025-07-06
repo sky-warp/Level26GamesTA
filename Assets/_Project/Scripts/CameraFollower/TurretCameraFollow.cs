@@ -6,7 +6,7 @@ namespace _Project.Scripts.CameraFollower
     public class TurretCameraFollow : MonoBehaviour
     {
         [SerializeField] private Vector3 offset = new Vector3(0, 2, -5);
-        
+
         private Transform _turretBase;
         private Transform _turretGun;
 
@@ -21,7 +21,8 @@ namespace _Project.Scripts.CameraFollower
             float y = _turretBase.eulerAngles.y;
             float x = _turretGun.localEulerAngles.x;
 
-            Quaternion rotation = Quaternion.Euler(0f, y, 0f); 
+            Quaternion rotation = Quaternion.Euler(0f, y, 0f);
+
             transform.position = _turretBase.position + rotation * offset;
 
             transform.rotation = Quaternion.Euler(x, y, 0f);
