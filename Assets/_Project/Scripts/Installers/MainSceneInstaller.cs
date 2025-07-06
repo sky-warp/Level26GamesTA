@@ -1,3 +1,4 @@
+using _Project.Scripts.CameraFollower;
 using _Project.Scripts.Configs;
 using _Project.Scripts.Factories;
 using _Project.Scripts.Turret.Model;
@@ -30,6 +31,10 @@ namespace _Project.Scripts.Installers
                 .Bind<TurretModel>()
                 .AsSingle()
                 .WithArguments(_turretConfig);
+            
+            Container
+                .Bind<TurretCameraFollow>()
+                .FromInstance(Camera.main.GetComponent<TurretCameraFollow>());
         }
     }
 }

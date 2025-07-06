@@ -6,5 +6,6 @@ namespace _Project.Scripts.Configs
     public class TurretConfig : ScriptableObject
     {
         [field: SerializeField] public float TurretSpeed { get; private set; }
+        [field: SerializeField] public float Sensitivity { get; private set; }
     }
 }
