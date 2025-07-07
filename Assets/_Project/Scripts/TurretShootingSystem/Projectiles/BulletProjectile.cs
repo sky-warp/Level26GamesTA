@@ -10,6 +10,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
         private float _speed;
         private Rigidbody _rigidbody;
         private Transform _initialPosition;
+        private Quaternion _initialRotation;
 
         private CancellationTokenSource _cts;
 
@@ -28,7 +29,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 
         public override void Move()
         {
-            MoveProjectile(_cts.Token).Forget();
+            MoveProjectile(_cts.Token, _initialRotation).Forget();
         }
 
         public override void Stop()
@@ -38,10 +39,11 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
             SelfPool.Release(this);
         }
 
-        public override void SetSpawnPoint(Vector3 point, Vector3 direction)
+        public override void SetSpawnPoint(Vector3 point, Vector3 direction, Quaternion rotation)
         {
             transform.position = point;
             _direction = direction.normalized;
+            _initialRotation = rotation;
         }
 
         private void OnDisable()
@@ -50,10 +52,12 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
             _cts?.Dispose();
         }
 
-        private async UniTaskVoid MoveProjectile(CancellationToken token)
+        private async UniTaskVoid MoveProjectile(CancellationToken token, Quaternion baseRotation)
         {
             while (!token.IsCancellationRequested)
             {
+                transform.rotation = baseRotation;
+
                 _rigidbody.linearVelocity = _direction * _speed;
 
                 await UniTask.Yield(PlayerLoopTiming.Update, _cts.Token);

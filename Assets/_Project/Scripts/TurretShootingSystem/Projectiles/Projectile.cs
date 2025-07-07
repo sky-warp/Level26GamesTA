@@ -10,7 +10,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
         
         public abstract void Move();
         public abstract void Stop();
-        public abstract void SetSpawnPoint(Vector3 point, Vector3 direction);
+        public abstract void SetSpawnPoint(Vector3 point, Vector3 direction, Quaternion rotation);
         public IObjectPool<Projectile> SelfPool;
     }
 }

@@ -8,7 +8,7 @@ namespace _Project.Scripts.Turret.Controller
     {
         public bool IsTouched { get; private set; }
 
-        private GameObject _turretGun;
+        private GameObject _turretTopside;
 
         private IInputable _inputManager;
 
@@ -20,12 +20,12 @@ namespace _Project.Scripts.Turret.Controller
         private float _rotationSpeed;
         private float _sensitivity;
 
-        public void Init(IInputable inputSystem, TurretModel model, GameObject turretGun)
+        public void Init(IInputable inputSystem, TurretModel model, GameObject turretTopside)
         {
             _inputManager = inputSystem;
             _rotationSpeed = model.TurretSpeed;
             _sensitivity = model.Sensitivity;
-            _turretGun = turretGun;
+            _turretTopside = turretTopside;
         }
 
         private void Update()
@@ -42,7 +42,7 @@ namespace _Project.Scripts.Turret.Controller
         {
             transform.Rotate(0, -_xInput * _rotationSpeed * Time.deltaTime, 0);
 
-            float currentX = _turretGun.transform.localEulerAngles.x;
+            float currentX = _turretTopside.transform.localEulerAngles.x;
 
             if (currentX > 180f)
                 currentX -= 360f;
@@ -50,9 +50,9 @@ namespace _Project.Scripts.Turret.Controller
             float gunAngleX = Mathf.Clamp(currentX - _currentGunRotation * _rotationSpeed, -10, 10);
 
             float smoothedX =
-                Mathf.LerpAngle(_turretGun.transform.localEulerAngles.x, gunAngleX, _sensitivity * Time.deltaTime);
+                Mathf.LerpAngle(_turretTopside.transform.localEulerAngles.x, gunAngleX, _sensitivity * Time.deltaTime);
 
-            _turretGun.transform.localRotation = Quaternion.Euler(smoothedX, 0f, 0f);
+            _turretTopside.transform.localRotation = Quaternion.Euler(smoothedX, 0f, 0f);
         }
     }
 }

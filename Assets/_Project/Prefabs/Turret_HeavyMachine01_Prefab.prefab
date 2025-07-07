@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5467396405140586416}
   m_Layer: 0
   m_Name: turret_heavyMachine01_top
-  m_TagString: TurretGun
+  m_TagString: TurretTopside
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 1264952574491413451}
   m_Layer: 0
   m_Name: turret_heavyMachine01_barrel
-  m_TagString: Untagged
+  m_TagString: TurretGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

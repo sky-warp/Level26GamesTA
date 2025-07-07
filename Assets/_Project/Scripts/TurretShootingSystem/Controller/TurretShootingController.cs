@@ -27,9 +27,10 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
             if (_controller.IsTouched)
             {
                 var obj = _projectilePool.Create();
-                
-                obj.SetSpawnPoint(_turretGun.transform.position, _turretGun.transform.forward);
-                
+
+                obj.SetSpawnPoint(_turretGun.transform.position, _turretGun.transform.forward,
+                    _turretGun.transform.rotation);
+
                 _projectilePool.OnGet(obj);
             }
         }

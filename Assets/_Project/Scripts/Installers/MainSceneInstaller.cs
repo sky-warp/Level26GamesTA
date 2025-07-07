@@ -38,7 +38,7 @@ namespace _Project.Scripts.Installers
                 .WithArguments(_turretConfig);
 
             Container
-                .Bind<TurretGun>()
+                .Bind<TurretComponents>()
                 .AsSingle();
             
             Container
