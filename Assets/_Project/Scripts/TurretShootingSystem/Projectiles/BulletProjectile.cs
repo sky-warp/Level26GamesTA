@@ -36,7 +36,6 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
         {
             _cts.Cancel();
             _rigidbody.linearVelocity = Vector3.zero;
-            SelfPool.Release(this);
         }
 
         public override void SetSpawnPoint(Vector3 point, Vector3 direction, Quaternion rotation)
@@ -46,9 +45,8 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
             _initialRotation = rotation;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            _cts?.Cancel();
             _cts?.Dispose();
         }
 

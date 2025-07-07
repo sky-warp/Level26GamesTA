@@ -13,9 +13,13 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 
         protected IObjectPool<T> Pool;
 
-        protected BaseObjectPool(T prefab)
+        protected BaseObjectPool(T prefab, int startupSize, int maxSize)
         {
             Prefab = prefab;
+            StartupSize = startupSize;
+            MaxSize = maxSize;
+            
+            Pool = new ObjectPool<T>(Create, OnGet, OnRelease, OnDestroy, CollectionCheck, StartupSize, MaxSize);
         }
 
         public abstract T Create();

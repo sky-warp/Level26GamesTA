@@ -49,7 +49,7 @@ namespace _Project.Scripts.Installers
             Container
                 .BindInterfacesAndSelfTo<TurretShootingController>()
                 .AsSingle()
-                .WithArguments(new ProjectilePool(_bulletPrefab));
+                .WithArguments(new ProjectilePool(_bulletPrefab, 100, 1000));
 
             Container
                 .BindInterfacesAndSelfTo<TurretAnimationController>()

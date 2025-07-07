@@ -4,7 +4,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 {
     public class ProjectilePool : BaseObjectPool<Projectile>
     {
-        public ProjectilePool(Projectile prefab) : base(prefab)
+        public ProjectilePool(Projectile prefab, int startupSize, int maxSize) : base(prefab, startupSize, maxSize)
         {
         }
 
@@ -25,6 +25,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
         public override void OnRelease(Projectile obj)
         {
             obj.gameObject.SetActive(false);
+            obj.Stop();
         }
 
         public override void OnDestroy(Projectile obj)
