@@ -3,6 +3,7 @@ using _Project.Scripts.Configs;
 using _Project.Scripts.Factories;
 using _Project.Scripts.Turret;
 using _Project.Scripts.Turret.Model;
+using _Project.Scripts.TurretAnimations;
 using _Project.Scripts.TurretMovement;
 using _Project.Scripts.TurretShootingSystem.Controller;
 using _Project.Scripts.TurretShootingSystem.Projectiles;
@@ -40,15 +41,19 @@ namespace _Project.Scripts.Installers
             Container
                 .Bind<TurretComponents>()
                 .AsSingle();
-            
+
             Container
                 .Bind<TurretCameraFollow>()
                 .FromInstance(Camera.main.GetComponent<TurretCameraFollow>());
-            
+
             Container
                 .BindInterfacesAndSelfTo<TurretShootingController>()
                 .AsSingle()
                 .WithArguments(new ProjectilePool(_bulletPrefab));
+
+            Container
+                .BindInterfacesAndSelfTo<TurretAnimationController>()
+                .AsSingle();
         }
     }
 }
