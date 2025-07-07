@@ -10,10 +10,10 @@ namespace _Project.Scripts.CameraFollower
         private Transform _turretBase;
         private Transform _turretGun;
 
-        public void Init(Transform targetPosition)
+        public void Init(Transform basePosition, Transform gunPosition)
         {
-            _turretBase = targetPosition;
-            _turretGun = targetPosition.gameObject.GetComponentInChildren<TurretGun>().transform;
+            _turretBase = basePosition;
+            _turretGun = gunPosition;
         }
 
         private void LateUpdate()

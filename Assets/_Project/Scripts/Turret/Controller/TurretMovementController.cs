@@ -20,16 +20,12 @@ namespace _Project.Scripts.Turret.Controller
         private float _rotationSpeed;
         private float _sensitivity;
 
-        private void Awake()
+        public void Init(IInputable inputSystem, TurretModel model, GameObject turretGun)
         {
-            _turretGun = GetComponentInChildren<TurretGun>().gameObject;
-        }
-
-        public void Init(IInputable inputable, TurretModel model)
-        {
-            _inputManager = inputable;
+            _inputManager = inputSystem;
             _rotationSpeed = model.TurretSpeed;
             _sensitivity = model.Sensitivity;
+            _turretGun = turretGun;
         }
 
         private void Update()

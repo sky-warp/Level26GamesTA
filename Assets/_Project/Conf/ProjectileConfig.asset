@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adc5dd8081145ba8beafa95c2a4c3c3, type: 3}
   m_Name: ProjectileConfig
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 25

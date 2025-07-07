@@ -1,6 +1,6 @@
-using _Project.Scripts.Turret;
 using _Project.Scripts.Turret.Controller;
 using _Project.Scripts.TurretShootingSystem.Projectiles;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts.TurretShootingSystem.Controller
@@ -8,7 +8,7 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
     public class TurretShootingController : ITickable
     {
         private TurretMovementController _controller;
-        private TurretGun _turretGun;
+        private GameObject _turretGun;
         BaseObjectPool<Projectile> _projectilePool;
 
         public TurretShootingController(BaseObjectPool<Projectile> projectilePool)
@@ -16,7 +16,7 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
             _projectilePool = projectilePool;
         }
 
-        public void Init(TurretMovementController controller, TurretGun turretGun)
+        public void Init(TurretMovementController controller, GameObject turretGun)
         {
             _controller = controller;
             _turretGun = turretGun;

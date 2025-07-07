@@ -5,6 +5,7 @@ using _Project.Scripts.Turret.Controller;
 using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretMovement;
 using _Project.Scripts.TurretShootingSystem.Controller;
+using UnityEngine;
 using Zenject;
 
 namespace _Project.Scripts
@@ -14,6 +15,7 @@ namespace _Project.Scripts
         private BaseMonoFactory _turretFactory;
         private IInputable _turretInput;
         private TurretModel _turretModel;
+        private TurretGun _turretGun;
         private TurretCameraFollow _turretCameraFollow;
         private TurretShootingController _turretShootingController;
 
@@ -21,13 +23,15 @@ namespace _Project.Scripts
             IInputable turretInput,
             TurretModel turretModel,
             TurretCameraFollow turretCameraFollow,
-            TurretShootingController shootingController)
+            TurretShootingController shootingController,
+            TurretGun turretGun)
         {
             _turretFactory = turretFactory;
             _turretInput = turretInput;
             _turretModel = turretModel;
             _turretCameraFollow = turretCameraFollow;
             _turretShootingController = shootingController;
+            _turretGun = turretGun;
         }
 
         public void Initialize()
@@ -35,11 +39,25 @@ namespace _Project.Scripts
             var turret = _turretFactory.Create();
 
             var turretController = turret.GetComponent<TurretMovementController>();
-            turretController.Init(_turretInput, _turretModel);
+            GetTurretGun(turretController.gameObject, _turretGun);
+            turretController.Init(_turretInput, _turretModel, _turretGun.Gun);
 
-            _turretCameraFollow.Init(turret.transform);
+            _turretCameraFollow.Init(turret.transform, _turretGun.Gun.transform);
 
-            _turretShootingController.Init(turretController, turretController.GetComponentInChildren<TurretGun>());
+            _turretShootingController.Init(turretController, _turretGun.Gun);
+        }
+
+        private void GetTurretGun(GameObject turret, TurretGun gunToInit)
+        {
+            Transform[] children = turret.GetComponentsInChildren<Transform>();
+            
+            foreach (Transform child in children)
+            {
+                if (child.CompareTag("TurretGun"))
+                {
+                    gunToInit.Init(child.gameObject);
+                }
+            }
         }
     }
 }
