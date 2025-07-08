@@ -55,8 +55,8 @@ namespace _Project.Scripts
 
         private void GetTurretComponents(GameObject turret, TurretComponents componentsToInit)
         {
-            GameObject turretTopside = new();
-            GameObject turretGun = new();
+            GameObject turretTopside = null;
+            GameObject turretGun = null;
 
             Transform[] children = turret.GetComponentsInChildren<Transform>();
 
