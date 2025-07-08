@@ -6,11 +6,13 @@ namespace _Project.Scripts.Turret.Model
     {
         public readonly float TurretSpeed;
         public readonly float Sensitivity;
+        public readonly float ShootInterval;
 
         public TurretModel(TurretConfig config)
         {
             TurretSpeed = config.TurretSpeed;
             Sensitivity = config.Sensitivity;
+            ShootInterval = config.ShootInterval;
         }
     }
 }

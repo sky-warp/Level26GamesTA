@@ -1,5 +1,7 @@
 using _Project.Scripts.Turret.Controller;
+using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretShootingSystem.Projectiles;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -9,11 +11,15 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
     {
         private TurretMovementController _controller;
         private GameObject _turretGun;
-        BaseObjectPool<Projectile> _projectilePool;
+        private BaseObjectPool<Projectile> _projectilePool;
 
-        public TurretShootingController(BaseObjectPool<Projectile> projectilePool)
+        private float _shootingInterval;
+        private bool _isReadyForShoot = true;
+        
+        public TurretShootingController(BaseObjectPool<Projectile> projectilePool, TurretModel model)
         {
             _projectilePool = projectilePool;
+            _shootingInterval = model.ShootInterval;
         }
 
         public void Init(TurretMovementController controller, GameObject turretGun)
@@ -22,9 +28,9 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
             _turretGun = turretGun;
         }
 
-        public void Tick()
+        public async void Tick()
         {
-            if (_controller.IsTouched)
+            if (_controller.IsTouched && _isReadyForShoot)
             {
                 var obj = _projectilePool.Pool.Get();
 
@@ -37,7 +43,18 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
                     _turretGun.transform.rotation);
 
                 _projectilePool.OnGet(obj);
+                
+                _isReadyForShoot = false;
+
+                await ResetShootingAbility();
             }
+        }
+
+        private async UniTask ResetShootingAbility()
+        {
+            await UniTask.WaitForSeconds(_shootingInterval);
+            
+            _isReadyForShoot = true;
         }
     }
 }

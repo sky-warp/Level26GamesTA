@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TurretSpeed>k__BackingField: 2
   <Sensitivity>k__BackingField: 10
+  <ShootInterval>k__BackingField: 0.125

@@ -7,5 +7,6 @@ namespace _Project.Scripts.Configs
     {
         [field: SerializeField] public float TurretSpeed { get; private set; }
         [field: SerializeField] public float Sensitivity { get; private set; }
+        [field: SerializeField] public float ShootInterval { get; private set; }
     }
 }
