@@ -5,20 +5,20 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 {
     public abstract class BaseObjectPool<T> where T : MonoBehaviour
     {
+        public IObjectPool<T> Pool;
+
         protected T Prefab;
 
         protected bool CollectionCheck;
         protected int StartupSize;
         protected int MaxSize;
 
-        protected IObjectPool<T> Pool;
-
         protected BaseObjectPool(T prefab, int startupSize, int maxSize)
         {
             Prefab = prefab;
             StartupSize = startupSize;
             MaxSize = maxSize;
-            
+
             Pool = new ObjectPool<T>(Create, OnGet, OnRelease, OnDestroy, CollectionCheck, StartupSize, MaxSize);
         }
 
