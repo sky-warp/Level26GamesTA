@@ -40,7 +40,7 @@ namespace _Project.Scripts.TurretShootingSystem.Controller
                 }
                 
                 obj.SetSpawnPoint(_turretGun.transform.position, _turretGun.transform.forward,
-                    _turretGun.transform.rotation);
+                    _turretGun.transform.localRotation);
 
                 _projectilePool.OnGet(obj);
                 
