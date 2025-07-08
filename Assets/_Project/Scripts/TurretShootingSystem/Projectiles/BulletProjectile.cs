@@ -47,6 +47,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 
         private void OnDestroy()
         {
+            _cts.Cancel();
             _cts?.Dispose();
         }
 
