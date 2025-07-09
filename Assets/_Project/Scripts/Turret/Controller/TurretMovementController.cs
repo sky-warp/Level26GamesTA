@@ -47,7 +47,7 @@ namespace _Project.Scripts.Turret.Controller
             if (currentX > 180f)
                 currentX -= 360f;
 
-            float gunAngleX = Mathf.Clamp(currentX - _currentGunRotation * _rotationSpeed, -10, 10);
+            float gunAngleX = Mathf.Clamp(currentX - _currentGunRotation * _rotationSpeed, -20, 10);
 
             float smoothedX =
                 Mathf.LerpAngle(_turretTopside.transform.localEulerAngles.x, gunAngleX, _sensitivity * Time.deltaTime);

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daeb681279b247fcb428ca0975531bc0, type: 3}
   m_Name: ProjectilePoolConfig
   m_EditorClassIdentifier: 
-  <StartupSize>k__BackingField: 0
-  <MaxSize>k__BackingField: 0
+  <StartupSize>k__BackingField: 100
+  <MaxSize>k__BackingField: 1000
