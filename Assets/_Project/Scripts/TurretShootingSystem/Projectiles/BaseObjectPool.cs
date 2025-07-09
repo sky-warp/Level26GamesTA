@@ -1,3 +1,4 @@
+using _Project.Scripts.Configs;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,11 +14,11 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
         protected int StartupSize;
         protected int MaxSize;
 
-        protected BaseObjectPool(T prefab, int startupSize, int maxSize)
+        protected BaseObjectPool(T prefab, ProjectilePoolConfig config)
         {
             Prefab = prefab;
-            StartupSize = startupSize;
-            MaxSize = maxSize;
+            StartupSize = config.StartupSize;
+            MaxSize = config.MaxSize;
 
             Pool = new ObjectPool<T>(Create, OnGet, OnRelease, OnDestroy, CollectionCheck, StartupSize, MaxSize);
         }

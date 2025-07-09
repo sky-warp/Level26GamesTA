@@ -1,10 +1,11 @@
+using _Project.Scripts.Configs;
 using UnityEngine;
 
 namespace _Project.Scripts.TurretShootingSystem.Projectiles
 {
     public class ProjectilePool : BaseObjectPool<Projectile>
     {
-        public ProjectilePool(Projectile prefab, int startupSize, int maxSize) : base(prefab, startupSize, maxSize)
+        public ProjectilePool(Projectile prefab, ProjectilePoolConfig config) : base(prefab, config)
         {
         }
 

@@ -16,6 +16,7 @@ namespace _Project.Scripts.Installers
     public class MainSceneInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private TurretConfig _turretConfig;
+        [SerializeField] private ProjectilePoolConfig _projectilePoolConfig;
 
         [SerializeField] private GameObject _turretPrefab;
 
@@ -49,7 +50,7 @@ namespace _Project.Scripts.Installers
             Container
                 .BindInterfacesAndSelfTo<TurretShootingController>()
                 .AsSingle()
-                .WithArguments(new ProjectilePool(_bulletPrefab, 100, 1000));
+                .WithArguments(new ProjectilePool(_bulletPrefab, _projectilePoolConfig));
 
             Container
                 .BindInterfacesAndSelfTo<TurretAnimationController>()
