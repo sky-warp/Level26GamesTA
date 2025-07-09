@@ -1,11 +1,10 @@
-using _Project.Scripts.Turret;
 using UnityEngine;
 
 namespace _Project.Scripts.CameraFollower
 {
     public class TurretCameraFollow : MonoBehaviour
     {
-        [SerializeField] private Vector3 offset = new Vector3(0, 2, -5);
+        [SerializeField] private Vector3 offset = new Vector3(-1.45f, 2, -4.55f);
 
         private Transform _turretBase;
         private Transform _turretGun;
@@ -19,13 +18,13 @@ namespace _Project.Scripts.CameraFollower
         private void LateUpdate()
         {
             float y = _turretBase.eulerAngles.y;
-            float x = _turretGun.localEulerAngles.x;
+            float x = _turretGun.eulerAngles.x;
 
-            Quaternion rotation = Quaternion.Euler(0f, y, 0f);
+            Quaternion rotation = Quaternion.Euler(x, y, 0f);
 
             transform.position = _turretBase.position + rotation * offset;
 
-            transform.rotation = Quaternion.Euler(x, y, 0f);
+            transform.rotation = rotation;
         }
     }
 }
