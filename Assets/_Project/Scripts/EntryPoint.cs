@@ -60,7 +60,7 @@ namespace _Project.Scripts
 
             _turretShootingController.Init(turretController, _turretComponents.Gun);
 
-            _coroutineStarter.StartSpecificCoroutine(_spawnService.SpawnJetWaves(2));
+            _coroutineStarter.StartSpecificCoroutine(_spawnService.SpawnJetWaves());
         }
 
         private void GetTurretComponents(GameObject turret, TurretComponents componentsToInit)

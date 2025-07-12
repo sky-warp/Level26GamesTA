@@ -8,20 +8,22 @@ namespace _Project.Scripts.Enemies
     public class EnemySpawnService : IInitializable
     {
         private BaseMonoFactory _jetFactory;
+        private int _wavesNumber;
         private bool _isDestroyed;
 
-        public EnemySpawnService(BaseMonoFactory jetFactory)
+        public EnemySpawnService(BaseMonoFactory jetFactory, int wavesNumber)
         {
             _jetFactory = jetFactory;
+            _wavesNumber = wavesNumber;
         }
 
         public void Initialize()
         {
         }
 
-        public IEnumerator SpawnJetWaves(int wavesNumber)
+        public IEnumerator SpawnJetWaves()
         {
-            for (int i = 0; i < wavesNumber; i++)
+            for (int i = 0; i < _wavesNumber; i++)
             {
                 var jet = _jetFactory.Create().GetComponent<Jet>();
 

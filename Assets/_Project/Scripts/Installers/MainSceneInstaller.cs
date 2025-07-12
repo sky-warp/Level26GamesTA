@@ -20,9 +20,10 @@ namespace _Project.Scripts.Installers
         [SerializeField] private TurretConfig _turretConfig;
         [SerializeField] private EnemyConfig _enemyConfig;
         [SerializeField] private ProjectilePoolConfig _projectilePoolConfig;
+        [SerializeField] private GameConfig _gameConfig;
 
         [SerializeField] private VisualEffectsConfig _visualEffectsConfig;
-        
+
         [SerializeField] private Projectile _bulletPrefab;
 
         public override void InstallBindings()
@@ -63,7 +64,7 @@ namespace _Project.Scripts.Installers
                 .BindInterfacesAndSelfTo<EnemySpawnService>()
                 .AsSingle()
                 .WithArguments(new EnemyFactory(_enemyConfig,
-                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)));
+                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves);
 
             Container
                 .Bind<CoroutineStarter>()
