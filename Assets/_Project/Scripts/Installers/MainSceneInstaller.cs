@@ -1,6 +1,8 @@
-using _Project.Scripts.CameraFollower;
 using _Project.Scripts.Configs;
+using _Project.Scripts.Enemies;
 using _Project.Scripts.Factories;
+using _Project.Scripts.Infrаstructure;
+using _Project.Scripts.Infrаstructure.CameraFollower;
 using _Project.Scripts.Turret;
 using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretAnimations;
@@ -16,10 +18,11 @@ namespace _Project.Scripts.Installers
     public class MainSceneInstaller : ScriptableObjectInstaller
     {
         [SerializeField] private TurretConfig _turretConfig;
+        [SerializeField] private EnemyConfig _enemyConfig;
         [SerializeField] private ProjectilePoolConfig _projectilePoolConfig;
 
-        [SerializeField] private GameObject _turretPrefab;
-
+        [SerializeField] private VisualEffectsConfig _visualEffectsConfig;
+        
         [SerializeField] private Projectile _bulletPrefab;
 
         public override void InstallBindings()
@@ -27,7 +30,7 @@ namespace _Project.Scripts.Installers
             Container
                 .BindInterfacesTo<EntryPoint>()
                 .AsSingle()
-                .WithArguments(new TurretFactory(_turretPrefab));
+                .WithArguments(new TurretFactory(_turretConfig.Prefab));
 
             Container
                 .Bind<IInputable>()
@@ -54,6 +57,17 @@ namespace _Project.Scripts.Installers
 
             Container
                 .BindInterfacesAndSelfTo<TurretAnimationController>()
+                .AsSingle();
+
+            Container
+                .BindInterfacesAndSelfTo<EnemySpawnService>()
+                .AsSingle()
+                .WithArguments(new EnemyFactory(_enemyConfig,
+                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)));
+
+            Container
+                .Bind<CoroutineStarter>()
+                .FromNewComponentOnNewGameObject()
                 .AsSingle();
         }
     }

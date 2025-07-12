@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MainInstaller
   m_EditorClassIdentifier: 
   _turretConfig: {fileID: 11400000, guid: 09abc2788d994fe4db576b824419b082, type: 2}
+  _enemyConfig: {fileID: 11400000, guid: 3d516bfa2b0d77c4881805ba507c3d50, type: 2}
   _projectilePoolConfig: {fileID: 11400000, guid: f35594beb2802d44588ec5618982f83b, type: 2}
+  _visualEffectsConfig: {fileID: 11400000, guid: e07dfdbb6f2260c42849f1dc69cad4fa, type: 2}
   _turretPrefab: {fileID: 3226583421603586234, guid: 056bf67070fbdf94c9a7a4e1813c82f9, type: 3}
   _bulletPrefab: {fileID: 6914187227372413532, guid: 55c875bb7e52ab34f81b77b9cb7cafea, type: 3}

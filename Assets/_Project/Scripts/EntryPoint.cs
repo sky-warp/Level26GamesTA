@@ -1,5 +1,7 @@
-using _Project.Scripts.CameraFollower;
+using _Project.Scripts.Enemies;
 using _Project.Scripts.Factories;
+using _Project.Scripts.Infrаstructure;
+using _Project.Scripts.Infrаstructure.CameraFollower;
 using _Project.Scripts.Turret;
 using _Project.Scripts.Turret.Controller;
 using _Project.Scripts.Turret.Model;
@@ -20,6 +22,8 @@ namespace _Project.Scripts
         private TurretCameraFollow _turretCameraFollow;
         private TurretShootingController _turretShootingController;
         private TurretAnimationController _turretAnimationController;
+        private CoroutineStarter _coroutineStarter;
+        private EnemySpawnService _spawnService;
 
         public EntryPoint(BaseMonoFactory turretFactory,
             IInputable turretInput,
@@ -27,7 +31,9 @@ namespace _Project.Scripts
             TurretCameraFollow turretCameraFollow,
             TurretShootingController shootingController,
             TurretComponents turretComponents,
-            TurretAnimationController turretAnimationController)
+            TurretAnimationController turretAnimationController,
+            CoroutineStarter coroutineStarter,
+            EnemySpawnService spawnService)
         {
             _turretFactory = turretFactory;
             _turretInput = turretInput;
@@ -36,6 +42,8 @@ namespace _Project.Scripts
             _turretShootingController = shootingController;
             _turretComponents = turretComponents;
             _turretAnimationController = turretAnimationController;
+            _coroutineStarter = coroutineStarter;
+            _spawnService = spawnService;
         }
 
         public void Initialize()
@@ -51,6 +59,8 @@ namespace _Project.Scripts
             _turretCameraFollow.Init(turret.transform, _turretComponents.Gun.transform);
 
             _turretShootingController.Init(turretController, _turretComponents.Gun);
+
+            _coroutineStarter.StartSpecificCoroutine(_spawnService.SpawnJetWaves(2));
         }
 
         private void GetTurretComponents(GameObject turret, TurretComponents componentsToInit)

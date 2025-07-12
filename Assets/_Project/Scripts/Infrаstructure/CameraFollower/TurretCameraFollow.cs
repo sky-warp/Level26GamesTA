@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Scripts.CameraFollower
+namespace _Project.Scripts.Infrаstructure.CameraFollower
 {
     public class TurretCameraFollow : MonoBehaviour
     {
