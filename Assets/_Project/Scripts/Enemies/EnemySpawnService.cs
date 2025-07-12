@@ -5,7 +5,7 @@ using Zenject;
 
 namespace _Project.Scripts.Enemies
 {
-    public class EnemySpawnService : IInitializable
+    public class EnemySpawnService
     {
         private BaseMonoFactory _jetFactory;
         private int _wavesNumber;
@@ -15,10 +15,6 @@ namespace _Project.Scripts.Enemies
         {
             _jetFactory = jetFactory;
             _wavesNumber = wavesNumber;
-        }
-
-        public void Initialize()
-        {
         }
 
         public IEnumerator SpawnJetWaves()

@@ -61,7 +61,7 @@ namespace _Project.Scripts.Installers
                 .AsSingle();
 
             Container
-                .BindInterfacesAndSelfTo<EnemySpawnService>()
+                .Bind<EnemySpawnService>()
                 .AsSingle()
                 .WithArguments(new EnemyFactory(_enemyConfig,
                     new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves);

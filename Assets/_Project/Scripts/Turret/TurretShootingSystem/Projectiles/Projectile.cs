@@ -6,7 +6,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 {
     public abstract class Projectile : MonoBehaviour
     {
-        [SerializeField] protected ProjectileConfig Config;
+        [SerializeField] protected BulletConfig Config;
         
         public abstract void Move();
         public abstract void Stop();
