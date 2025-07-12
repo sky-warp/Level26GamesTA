@@ -8,6 +8,7 @@ TagManager:
   - asteroid
   - TurretGun
   - TurretTopside
+  - JetEnemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemies
   - 
   - 
   - 
