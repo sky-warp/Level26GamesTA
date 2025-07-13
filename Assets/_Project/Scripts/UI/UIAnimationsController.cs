@@ -9,6 +9,7 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private GameObject _numberOfWaves;
         [SerializeField] private GameObject _missionComplete;
+        [SerializeField] private GameObject _endgameWindow;
 
         private TextMeshProUGUI _numberOfWavesText;
         private RectTransform _rectTransform;
@@ -21,6 +22,7 @@ namespace _Project.Scripts.UI
             _startPosition = _rectTransform.anchoredPosition;
             
             _missionComplete.SetActive(false);
+            _endgameWindow.SetActive(false);
         }
 
         public void SetWaveNumberText(int currentNumberOfWaves, int totalNumberOfWaves)
@@ -46,6 +48,13 @@ namespace _Project.Scripts.UI
             await UniTask.WaitForSeconds(2.0f);
             
             _missionComplete.SetActive(false);
+
+            ShowEndgameWindow();
+        }
+
+        private void ShowEndgameWindow()
+        {
+            _endgameWindow.SetActive(true);
         }
     }
 }
