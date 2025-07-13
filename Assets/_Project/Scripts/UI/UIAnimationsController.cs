@@ -17,6 +17,7 @@ namespace _Project.Scripts.UI
         [SerializeField] private GameObject _endgameWindow;
 
         [SerializeField] private TextMeshProUGUI _destroyedJetsCountText;
+        [SerializeField] private TextMeshProUGUI _earnedCoinsCount;
 
         [SerializeField] private Button _continueButton;
 
@@ -25,6 +26,7 @@ namespace _Project.Scripts.UI
         private TextMeshProUGUI _numberOfWavesText;
         private RectTransform _rectTransform;
         private Vector2 _startPosition;
+        private float _current;
 
         private void Start()
         {
@@ -38,7 +40,6 @@ namespace _Project.Scripts.UI
             _startPosition = _rectTransform.anchoredPosition;
 
             _missionComplete.SetActive(false);
-            _endgameWindow.SetActive(false);
         }
 
         public void SetDestroyedJetsCountText(int destroyedJetsCount)
@@ -72,7 +73,21 @@ namespace _Project.Scripts.UI
 
         private void ShowEndgameWindow()
         {
-            _endgameWindow.SetActive(true);
+            var canvasGroup = _endgameWindow.GetComponent<CanvasGroup>();
+
+            Sequence endgameSequence = DOTween.Sequence();
+            
+            var coinsAnimation = DOVirtual.Float(0, 999, 1, (x) =>
+            {
+                int go = (int)x;
+                _earnedCoinsCount.text = go.ToString();
+            });
+            
+            endgameSequence.Append(canvasGroup.DOFade(1.0f, 0.5f))
+                .Append(_destroyedJetsCountText.gameObject.transform.DOScale(1, 0.5f).From(0).SetEase(Ease.OutBounce))
+                .Append(_earnedCoinsCount.gameObject.transform.DOScale(1, 0.5f).From(0).SetEase(Ease.OutBounce))
+                .Join(coinsAnimation.Play());
+
             _blurEffectToggle.BlurBackground();
         }
 

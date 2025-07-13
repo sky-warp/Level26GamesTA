@@ -128,13 +128,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 213304922}
+  - component: {fileID: 213304923}
   m_Layer: 5
   m_Name: EndgamePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &213304922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -157,6 +158,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &213304923
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213304921}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &267112092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1900,7 @@ MonoBehaviour:
   _missionComplete: {fileID: 1164866204}
   _endgameWindow: {fileID: 213304921}
   _destroyedJetsCountText: {fileID: 1766338919}
+  _earnedCoinsCount: {fileID: 922829208}
   _continueButton: {fileID: 1930399995}
 --- !u!1 &1632045987
 GameObject:
