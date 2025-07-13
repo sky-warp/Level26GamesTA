@@ -21,8 +21,10 @@ namespace _Project.Scripts.Enemies
 
         public override void DestroyEnemy()
         {
+            VisualEffectFactory.Create(transform.position);
+
             IsDestroyed = true;
-            Destroy(gameObject);
+            Destroy(gameObject.transform.root.gameObject);
         }
 
         public override void TakeDamage(Projectile projectile)
@@ -33,7 +35,7 @@ namespace _Project.Scripts.Enemies
             if (Health == 0)
             {
                 IsDestroyed = true;
-                Destroy(transform.root.gameObject);
+                DestroyEnemy();
             }
 
             Debug.Log(Health);

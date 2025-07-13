@@ -11,9 +11,9 @@ namespace _Project.Scripts.Factories
             _effect = effect;
         }
 
-        public ParticleSystem Create()
+        public ParticleSystem Create(Vector3 position)
         {
-            var effect = GameObject.Instantiate(_effect);    
+            var effect = GameObject.Instantiate(_effect, position, Quaternion.identity);    
             
             return effect;
         }
