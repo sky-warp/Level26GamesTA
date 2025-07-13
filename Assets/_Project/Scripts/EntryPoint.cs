@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Controller;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Factories;
@@ -15,7 +16,7 @@ using Zenject;
 
 namespace _Project.Scripts
 {
-    public class EntryPoint : IInitializable
+    public class EntryPoint : IInitializable, IDisposable
     {
         private BaseMonoFactory _turretFactory;
         private IInputable _turretInput;
@@ -28,6 +29,7 @@ namespace _Project.Scripts
         private EnemySpawnService _spawnService;
         private UIAnimationsController _animationsController;
         private GameStateController _gameStateController;
+        private SceneManager _sceneManager;
 
         public EntryPoint(BaseMonoFactory turretFactory,
             IInputable turretInput,
@@ -70,7 +72,9 @@ namespace _Project.Scripts
             _turretShootingController.Init(turretController, _turretComponents.Gun);
 
             _animationsController.Init();
-            
+            _sceneManager = new SceneManager();
+            _animationsController.OnContinueButtonPressed += _sceneManager.RestartGame;
+
             _coroutineStarter.StartSpecificCoroutine(_spawnService.SpawnJetWaves());
         }
 
@@ -95,6 +99,11 @@ namespace _Project.Scripts
             }
 
             componentsToInit.Init(turretGun, turretTopside);
+        }
+
+        public void Dispose()
+        {
+            _animationsController.OnContinueButtonPressed -= _sceneManager.RestartGame;
         }
     }
 }

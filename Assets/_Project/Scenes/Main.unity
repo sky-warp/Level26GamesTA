@@ -1115,6 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
+  - component: {fileID: 832575520}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -1138,7 +1139,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 402aa961c3912cb48835dae3cc8237d4, type: 2}
 --- !u!4 &832575519
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1155,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832575520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832575517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8275715c844dde829be970eb9165f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &878622841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,9 +1882,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f6e98d7d39408c8cff5e40c1b6a353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blurEffectToggle: {fileID: 832575520}
   _numberOfWaves: {fileID: 1191351470}
   _missionComplete: {fileID: 1164866204}
   _endgameWindow: {fileID: 213304921}
+  _destroyedJetsCountText: {fileID: 1766338919}
+  _continueButton: {fileID: 1930399995}
 --- !u!1 &1632045987
 GameObject:
   m_ObjectHideFlags: 0
