@@ -28,6 +28,8 @@ namespace _Project.Scripts.Installers
 
         public override void InstallBindings()
         {
+            var battleController = new BattleController();
+            
             Container
                 .BindInterfacesTo<EntryPoint>()
                 .AsSingle()
@@ -65,7 +67,7 @@ namespace _Project.Scripts.Installers
                 .AsSingle()
                 .WithArguments(new EnemyFactory(_enemyConfig,
                     new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves,
-                    new BattleController());
+                    battleController);
 
             Container
                 .Bind<CoroutineStarter>()
@@ -74,6 +76,7 @@ namespace _Project.Scripts.Installers
 
             Container
                 .Bind<BattleController>()
+                .FromInstance(battleController)
                 .AsSingle();
         }
     }

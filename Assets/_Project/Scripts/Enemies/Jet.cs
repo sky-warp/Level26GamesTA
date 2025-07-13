@@ -37,8 +37,6 @@ namespace _Project.Scripts.Enemies
                 IsDestroyed = true;
                 DestroyEnemy();
             }
-
-            Debug.Log(Health);
         }
 
         private void OnTriggerEnter(Collider other)

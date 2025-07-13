@@ -8,6 +8,7 @@ using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretAnimations;
 using _Project.Scripts.TurretMovement;
 using _Project.Scripts.TurretShootingSystem.Controller;
+using _Project.Scripts.UI;
 using UnityEngine;
 using Zenject;
 
@@ -24,6 +25,7 @@ namespace _Project.Scripts
         private TurretAnimationController _turretAnimationController;
         private CoroutineStarter _coroutineStarter;
         private EnemySpawnService _spawnService;
+        private UIAnimationsController _animationsController;
 
         public EntryPoint(BaseMonoFactory turretFactory,
             IInputable turretInput,
@@ -33,7 +35,8 @@ namespace _Project.Scripts
             TurretComponents turretComponents,
             TurretAnimationController turretAnimationController,
             CoroutineStarter coroutineStarter,
-            EnemySpawnService spawnService)
+            EnemySpawnService spawnService,
+            UIAnimationsController animationsController)
         {
             _turretFactory = turretFactory;
             _turretInput = turretInput;
@@ -44,6 +47,7 @@ namespace _Project.Scripts
             _turretAnimationController = turretAnimationController;
             _coroutineStarter = coroutineStarter;
             _spawnService = spawnService;
+            _animationsController = animationsController;
         }
 
         public void Initialize()
@@ -60,6 +64,8 @@ namespace _Project.Scripts
 
             _turretShootingController.Init(turretController, _turretComponents.Gun);
 
+            _animationsController.Init();
+            
             _coroutineStarter.StartSpecificCoroutine(_spawnService.SpawnJetWaves());
         }
 
