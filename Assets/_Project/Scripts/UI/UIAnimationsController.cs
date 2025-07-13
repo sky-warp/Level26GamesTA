@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace _Project.Scripts.UI
     public class UIAnimationsController : MonoBehaviour
     {
         [SerializeField] private GameObject _numberOfWaves;
+        [SerializeField] private GameObject _missionComplete;
 
         private TextMeshProUGUI _numberOfWavesText;
         private RectTransform _rectTransform;
@@ -17,6 +19,8 @@ namespace _Project.Scripts.UI
             _numberOfWavesText = _numberOfWaves.GetComponentInChildren<TextMeshProUGUI>();
             _rectTransform = _numberOfWaves.GetComponent<RectTransform>();
             _startPosition = _rectTransform.anchoredPosition;
+            
+            _missionComplete.SetActive(false);
         }
 
         public void SetWaveNumberText(int currentNumberOfWaves, int totalNumberOfWaves)
@@ -33,6 +37,15 @@ namespace _Project.Scripts.UI
                 {
                     _rectTransform.DOAnchorPosY(_startPosition.y, 2.0f);
                 });
+        }
+
+        public async UniTaskVoid ShowMissionCompleteText()
+        {
+            _missionComplete.SetActive(true);
+            
+            await UniTask.WaitForSeconds(2.0f);
+            
+            _missionComplete.SetActive(false);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace _Project.Scripts.Enemies
             {
                 _animationsController.SetWaveNumberText(i + 1, _wavesNumber);
                 _animationsController.ShowNumberOfWaves();
-                
+
                 var jet = _jetFactory.Create().GetComponent<Jet>();
 
                 _battleController.SetCurrentEnemy(jet);
@@ -39,8 +39,11 @@ namespace _Project.Scripts.Enemies
 
                 _battleController.ResetCurrentEnemy();
 
-                yield return new WaitForSeconds(2f);
+                if (i + 1 != _wavesNumber)
+                    yield return new WaitForSeconds(2f);
             }
+
+            _animationsController.ShowMissionCompleteText().Forget();
         }
     }
 }
