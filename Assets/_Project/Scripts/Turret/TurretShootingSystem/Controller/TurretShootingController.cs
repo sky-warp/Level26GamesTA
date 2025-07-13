@@ -1,4 +1,4 @@
-using _Project.Scripts.Turret.Controller;
+using _Project.Scripts.Controller;
 using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretShootingSystem.Projectiles;
 using Cysharp.Threading.Tasks;

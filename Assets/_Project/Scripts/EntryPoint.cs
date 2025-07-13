@@ -1,9 +1,10 @@
+using _Project.Scripts.Controller;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Factories;
+using _Project.Scripts.GameStateMachine;
 using _Project.Scripts.Infrаstructure;
 using _Project.Scripts.Infrаstructure.CameraFollower;
 using _Project.Scripts.Turret;
-using _Project.Scripts.Turret.Controller;
 using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretAnimations;
 using _Project.Scripts.TurretMovement;
@@ -26,6 +27,7 @@ namespace _Project.Scripts
         private CoroutineStarter _coroutineStarter;
         private EnemySpawnService _spawnService;
         private UIAnimationsController _animationsController;
+        private GameStateController _gameStateController;
 
         public EntryPoint(BaseMonoFactory turretFactory,
             IInputable turretInput,
@@ -36,7 +38,8 @@ namespace _Project.Scripts
             TurretAnimationController turretAnimationController,
             CoroutineStarter coroutineStarter,
             EnemySpawnService spawnService,
-            UIAnimationsController animationsController)
+            UIAnimationsController animationsController,
+            GameStateController gameStateController)
         {
             _turretFactory = turretFactory;
             _turretInput = turretInput;
@@ -48,6 +51,7 @@ namespace _Project.Scripts
             _coroutineStarter = coroutineStarter;
             _spawnService = spawnService;
             _animationsController = animationsController;
+            _gameStateController = gameStateController;
         }
 
         public void Initialize()
@@ -57,6 +61,7 @@ namespace _Project.Scripts
             var turretController = turret.GetComponent<TurretMovementController>();
             GetTurretComponents(turretController.gameObject, _turretComponents);
             turretController.Init(_turretInput, _turretModel, _turretComponents.TopsideBase);
+            _gameStateController.OnGameEnd += turretController.TurnOffInput;
 
             _turretAnimationController.Init(turretController);
 

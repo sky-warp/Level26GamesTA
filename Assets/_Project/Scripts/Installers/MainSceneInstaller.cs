@@ -1,6 +1,7 @@
 using _Project.Scripts.Configs;
 using _Project.Scripts.Enemies;
 using _Project.Scripts.Factories;
+using _Project.Scripts.GameStateMachine;
 using _Project.Scripts.Infrаstructure;
 using _Project.Scripts.Infrаstructure.CameraFollower;
 using _Project.Scripts.Turret;
@@ -29,7 +30,8 @@ namespace _Project.Scripts.Installers
         public override void InstallBindings()
         {
             var battleController = new BattleController();
-            
+            var gameStateController = new GameStateController();
+
             Container
                 .BindInterfacesTo<EntryPoint>()
                 .AsSingle()
@@ -66,8 +68,8 @@ namespace _Project.Scripts.Installers
                 .Bind<EnemySpawnService>()
                 .AsSingle()
                 .WithArguments(new EnemyFactory(_enemyConfig,
-                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves,
-                    battleController);
+                        new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves,
+                    battleController, gameStateController);
 
             Container
                 .Bind<CoroutineStarter>()
@@ -77,6 +79,11 @@ namespace _Project.Scripts.Installers
             Container
                 .Bind<BattleController>()
                 .FromInstance(battleController)
+                .AsSingle();
+
+            Container
+                .Bind<GameStateController>()
+                .FromInstance(gameStateController)
                 .AsSingle();
         }
     }

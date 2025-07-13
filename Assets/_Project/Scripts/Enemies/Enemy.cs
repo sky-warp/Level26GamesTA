@@ -8,10 +8,10 @@ namespace _Project.Scripts.Enemies
     [RequireComponent(typeof(Rigidbody))]
     public abstract class Enemy : MonoBehaviour
     {
+        public bool IsDestroyed { get; protected set; }
         public Action<Projectile> OnHit;
         protected int Health;
         protected float Speed;
-        public bool IsDestroyed { get; protected set; }
         protected VisualEffectFactory VisualEffectFactory;
         protected Vector3 Destination;
 

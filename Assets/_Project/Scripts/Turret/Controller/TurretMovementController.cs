@@ -2,7 +2,7 @@ using _Project.Scripts.Turret.Model;
 using _Project.Scripts.TurretMovement;
 using UnityEngine;
 
-namespace _Project.Scripts.Turret.Controller
+namespace _Project.Scripts.Controller
 {
     public class TurretMovementController : MonoBehaviour
     {
@@ -20,6 +20,8 @@ namespace _Project.Scripts.Turret.Controller
         private float _rotationSpeed;
         private float _sensitivity;
 
+        private bool _isEnable = true;
+
         public void Init(IInputable inputSystem, TurretModel model, GameObject turretTopside)
         {
             _inputManager = inputSystem;
@@ -28,14 +30,25 @@ namespace _Project.Scripts.Turret.Controller
             _turretTopside = turretTopside;
         }
 
+        public void TurnOffInput()
+        {
+            _isEnable = false;
+            IsTouched = false;
+            _xInput = 0;
+            _yInput = 0;
+        }
+
         private void Update()
         {
-            _xInput = _inputManager.GetAxisHorizontal();
-            _yInput = _inputManager.GetAxisVertical();
+            if (_isEnable)
+            {
+                _xInput = _inputManager.GetAxisHorizontal();
+                _yInput = _inputManager.GetAxisVertical();
 
-            IsTouched = Mathf.Abs(_xInput) > 0 || Mathf.Abs(_yInput) > 0 || Input.touchCount > 0;
+                IsTouched = Mathf.Abs(_xInput) > 0 || Mathf.Abs(_yInput) > 0 || Input.touchCount > 0;
 
-            _currentGunRotation = -_yInput;
+                _currentGunRotation = -_yInput;
+            }
         }
 
         private void FixedUpdate()

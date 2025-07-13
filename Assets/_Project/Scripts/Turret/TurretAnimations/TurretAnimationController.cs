@@ -1,4 +1,4 @@
-using _Project.Scripts.Turret.Controller;
+using _Project.Scripts.Controller;
 using UnityEngine;
 using Zenject;
 
