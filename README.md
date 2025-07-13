@@ -1,9 +1,11 @@
 Список ассетов:
+
 Турель - https://assetstore.unity.com/packages/3d/props/weapons/free-machine-turret-302056
 Враги (вертолеты и истребители) - https://assetstore.unity.com/packages/3d/vehicles/rts-modern-combat-vehicle-pack-free-281758
 Эффект уничтожения - https://assetstore.unity.com/packages/vfx/particles/legacy-particle-pack-73777
 
 Краткое описание архитектуры:
+
 Из сторонних библиотек и фреймворков использовал:
 - Zenject
 - UniTask
