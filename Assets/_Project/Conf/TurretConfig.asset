@@ -15,4 +15,4 @@ MonoBehaviour:
   <Prefab>k__BackingField: {fileID: 3226583421603586234, guid: 056bf67070fbdf94c9a7a4e1813c82f9, type: 3}
   <TurretSpeed>k__BackingField: 2
   <Sensitivity>k__BackingField: 10
-  <ShootInterval>k__BackingField: 0.125
+  <ShootInterval>k__BackingField: 0.0625

@@ -64,11 +64,16 @@ namespace _Project.Scripts.Installers
                 .Bind<EnemySpawnService>()
                 .AsSingle()
                 .WithArguments(new EnemyFactory(_enemyConfig,
-                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves);
+                    new VisualEffectFactory(_visualEffectsConfig.JetDestroyEffect)), _gameConfig.NumberOfEnemyWaves,
+                    new BattleController());
 
             Container
                 .Bind<CoroutineStarter>()
                 .FromNewComponentOnNewGameObject()
+                .AsSingle();
+
+            Container
+                .Bind<BattleController>()
                 .AsSingle();
         }
     }

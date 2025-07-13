@@ -24,7 +24,7 @@ namespace _Project.Scripts.Factories
         {
             var instance = GameObject.Instantiate(Prefab, _spawnPoint, Quaternion.Euler(0, 180, 0));
 
-            instance.GetComponent<Enemy>().Init(_enemyConf.Speed, _visualEffectsFactory,_destination);
+            instance.GetComponent<Enemy>().Init(_enemyConf.Speed, _enemyConf.Health, _visualEffectsFactory,_destination);
             
             return instance;
         }

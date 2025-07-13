@@ -1,12 +1,10 @@
-using System;
+using _Project.Scripts.TurretShootingSystem.Projectiles;
 using UnityEngine;
 
 namespace _Project.Scripts.Enemies
 {
     public class Jet : Enemy
     {
-        public Action OnJetDestroyed;
-        
         private Rigidbody _rigidbody;
 
         private void Awake()
@@ -24,8 +22,27 @@ namespace _Project.Scripts.Enemies
         public override void DestroyEnemy()
         {
             IsDestroyed = true;
-            OnJetDestroyed?.Invoke();
             Destroy(gameObject);
+        }
+
+        public override void TakeDamage(Projectile projectile)
+        {
+            if (Health - projectile.Damage >= 0)
+                Health -= projectile.Damage;
+
+            if (Health == 0)
+            {
+                IsDestroyed = true;
+                Destroy(transform.root.gameObject);
+            }
+
+            Debug.Log(Health);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Projectile projectile))
+                OnHit?.Invoke(projectile);
         }
     }
 }

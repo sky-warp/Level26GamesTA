@@ -7,6 +7,7 @@ namespace _Project.Scripts.Configs
     {
         [field: SerializeField] public GameObject Prefab { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public int Health { get; private set; }
         [field: SerializeField] public Vector3 SpawnPoint { get; private set; }
     }
 }

@@ -7,7 +7,6 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
     [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
     public class BulletProjectile : Projectile
     {
-        private float _speed;
         private Rigidbody _rigidbody;
         private Transform _initialPosition;
         private Quaternion _initialRotation;
@@ -23,7 +22,8 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
 
         private void Awake()
         {
-            _speed = Config.Speed;
+            Speed = Config.Speed;
+            Damage = Config.Damage;
             _rigidbody = GetComponent<Rigidbody>();
         }
 
@@ -57,7 +57,7 @@ namespace _Project.Scripts.TurretShootingSystem.Projectiles
             {
                 _rigidbody.MoveRotation(_initialRotation.normalized);
 
-                _rigidbody.linearVelocity = _direction * _speed;
+                _rigidbody.linearVelocity = _direction * Speed;
 
                 if (_direction != Vector3.zero)
                 {
