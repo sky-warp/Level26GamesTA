@@ -1,7 +1,7 @@
 using _Project.Scripts.Enemies;
 using _Project.Scripts.TurretShootingSystem.Projectiles;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Infrаstructure
 {
     public class BattleController
     {
